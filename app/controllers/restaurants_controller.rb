@@ -5,7 +5,6 @@ class RestaurantsController < ApplicationController
 
   def create
     res = Restaurant.create(:name => params[:name])
-    res.save
     redirect_to restaurant_path(res.name)
   end
 
