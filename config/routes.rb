@@ -1,4 +1,8 @@
 RestaurTr::Application.routes.draw do
+  resources :menu_items
+
+  resources :menus
+
   resources :restaurants
 
   #get \"users\/show\"
