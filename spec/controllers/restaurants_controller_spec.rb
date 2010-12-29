@@ -23,6 +23,11 @@ describe RestaurantsController do
       get 'show', :id => "A New Restaurant"
       response.should have_selector("h1", :content => "A New Restaurant")
     end
+
+    it "should automatically redirect to the show page after creating a restaurant" do
+      post 'create', :name => "A New Restaurant"
+      response.should redirect_to(restaurant_path("A New Restaurant"))
+    end
   end
 
   describe "modifying an existing restaurant" do
