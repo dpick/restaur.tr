@@ -1,5 +1,5 @@
 %h1 Restaurants
 %ul
-  = @restaurants.each do |r|
+  - @restaurants.each do |r|
     %li
-      = r.name
+      = link_to(r.name, restaurant_path(r.name))
