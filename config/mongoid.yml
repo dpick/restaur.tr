@@ -1,12 +1,13 @@
 defaults: &defaults
   host: localhost
-  database: restaurtr_test
+  database: restaurtr_local
 
 development:
   <<: *defaults
 
 test:
   <<: *defaults
+  database: restaurtr_test
 
 production:
   <<: *defaults
