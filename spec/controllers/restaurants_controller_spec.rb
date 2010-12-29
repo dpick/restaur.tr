@@ -101,7 +101,7 @@ describe RestaurantsController do
 
     describe "when a restaraunt has no owner defined" do
       before do
-        Restaurant.create(:name => "Panes")
+        Restaurant.create(:name => "Panes", :owner => "")
       end
 
       it "should show Not Claimed on the direct page" do

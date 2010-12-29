@@ -8,7 +8,7 @@ class Restaurant
   end
 
   def owner_name
-    return nil if owner == nil
+    return nil if owner == nil or owner == ""
     User.find(owner).name
   end
 end
