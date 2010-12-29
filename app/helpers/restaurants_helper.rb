@@ -8,4 +8,8 @@ module RestaurantsHelper
     return owner_checkbox_for(form, current_user) unless current_user.nil?
     link_to("Sign in to claim ownership", user_session_path)
   end
+
+  def owner_name restaurant
+    restaurant.owner_name == nil ? "Not Claimed" : restaurant.owner_name
+  end
 end

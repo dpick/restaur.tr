@@ -13,8 +13,17 @@ describe Restaurant do
       Restaurant.create(:name => "single", :owner => u.id)
     end
 
+    after do
+      User.delete_all
+      Restaurant.delete_all
+    end
+
     it "should return Bill Clinton as the name of the owner" do
       Restaurant.find_by_name("single").owner_name.should == "Bill Clinton"
+    end
+
+    it "should return nil as the name of a non-existant owner" do
+      Restaurant.create(:name => "another").owner_name.should be_nil
     end
   end
 

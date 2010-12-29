@@ -98,6 +98,17 @@ describe RestaurantsController do
         Restaurant.find_by_name("new test").should_not be_nil
       end
     end
+
+    describe "when a restaraunt has no owner defined" do
+      before do
+        Restaurant.create(:name => "Panes")
+      end
+
+      it "should show Not Claimed on the direct page" do
+        get 'show', :id => "Panes"
+        response.should have_selector("h2", :content => "Not Claimed")
+      end
+    end
   end
 
   describe "when no user is logged in" do
