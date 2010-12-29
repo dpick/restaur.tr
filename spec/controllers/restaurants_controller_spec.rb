@@ -39,6 +39,16 @@ describe RestaurantsController do
       get 'index'
       response.should have_selector("li", :content => "Akbar")
     end
+
+    it "should be accessible through a direct name link" do
+      get 'show', :id => "Akbar"
+      response.should_not be_nil
+    end
+
+    it "should be accessible through a case insensitive name link" do
+      get 'show', :id => "akbar"
+      response.should_not be_nil
+    end
   end
 
   describe "modifying an existing restaurant" do
