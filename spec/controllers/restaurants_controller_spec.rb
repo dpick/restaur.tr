@@ -14,9 +14,22 @@ describe RestaurantsController do
     end
 
     describe "when starting to create a restaurant site" do
-      it "should have a name field" do
+      before do
         get 'new'
+      end
+
+      it "should have a name field" do
         response.should have_selector("label", :content => "Name")
+        response.should have_selector("input", :name => "restaurant[name]")
+      end
+
+      it "should have a check box" do
+        response.should have_selector("input", :type => "checkbox")
+      end
+
+      it "should have an address field" do
+        response.should have_selector("label", :content => "Address")
+        response.should have_selector("input", :name => "restaurant[address]")
       end
     end
 
