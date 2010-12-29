@@ -17,7 +17,9 @@ describe RestaurantsController do
       post 'create', :name => "A New Restaurant"
       Restaurant.find(:all).count.should == 1
     end
+  end
 
+  describe "modifying an existing restaurant" do
     it "should delete a restaurant" do
       post 'create', :name => "test restaurant"
       delete :destroy, :id => "test restaurant"
