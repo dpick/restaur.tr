@@ -1,7 +1,7 @@
 RestaurTr::Application.routes.draw do
-  resources :menu_items
+  resources :sections
 
-  resources :menus
+  resources :menu_items
 
   resources :restaurants
 
