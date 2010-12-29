@@ -1,3 +1,5 @@
 %h1 Restaurants
-- @restaurants.each do |r|
-  = r.name
+%ul
+  = @restaurants.each do |r|
+    %li
+      = r.name

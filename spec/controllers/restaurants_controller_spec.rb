@@ -30,6 +30,17 @@ describe RestaurantsController do
     end
   end
 
+  describe "viewing an existing restaurant" do
+    before do
+      Restaurant.create(:name => "Akbar")
+    end
+
+    it "should be listed in the list of all restaurants" do
+      get 'index'
+      response.should have_selector("li", :content => "Akbar")
+    end
+  end
+
   describe "modifying an existing restaurant" do
     it "should delete a restaurant" do
       post 'create', :name => "test restaurant"
