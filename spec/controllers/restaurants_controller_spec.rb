@@ -12,5 +12,10 @@ describe RestaurantsController do
       get 'new'
       response.should have_selector("label", :content => "Name")
     end
+
+    it "should create a new restaurant when submitted" do 
+      post 'create', :name => "A New Restaurant"
+      Restaurant.find(:all).count.should == 1
+    end
   end
 end

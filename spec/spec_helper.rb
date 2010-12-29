@@ -9,4 +9,7 @@ RSpec.configure do |config|
   config.include Webrat::Matchers, :type => :views
   config.include Devise::TestHelpers, :type => :controller
   config.mock_with :rspec
+  config.after :suite do
+    Mongoid.master.collections.select {|c| c.name !~ /system/ }.each(&:drop)
+  end
 end
