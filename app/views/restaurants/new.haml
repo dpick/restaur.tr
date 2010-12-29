@@ -4,9 +4,9 @@
     = f.label :name, 'Name'
     = f.text_field :name
     %br
-    = owner_area(f, current_user)
-    %br
     = f.label :address, 'Address'
     = f.text_field :address
+    %br
+    = owner_area(f, current_user)
     %br
     = f.submit "Create Site"
