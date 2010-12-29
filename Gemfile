@@ -27,6 +27,7 @@ gem 'rails', '3.0.3'
 # and rake tasks are available in development mode:
 group :development, :test do
   gem "rspec-rails", "~> 2.0.1"
+  gem "mocha"
 end
 
 # Bundle gems needed for Mongoid

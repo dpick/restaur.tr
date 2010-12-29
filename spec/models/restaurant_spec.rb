@@ -7,6 +7,17 @@ describe Restaurant do
     end
   end
 
+  describe "for a single restaurant" do
+    before do
+      u = User.create(:name => "Bill Clinton", :email => "test@test.com", :password => "pword1234")
+      Restaurant.create(:name => "single", :owner => u.id)
+    end
+
+    it "should return Bill Clinton as the name of the owner" do
+      Restaurant.find_by_name("single").owner_name.should == "Bill Clinton"
+    end
+  end
+
   describe "when many restaurants are available" do
     before do
       Restaurant.create(:name => "first")

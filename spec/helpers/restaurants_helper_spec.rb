@@ -1,15 +1,19 @@
 require 'spec_helper'
+require 'mocha'
 
-# Specs in this file have access to a helper object that includes
-# the RestaurantsHelper. For example:
-#
-# describe RestaurantsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       helper.concat_strings("this","that").should == "this that"
-#     end
-#   end
-# end
 describe RestaurantsHelper do
+  describe "when a user is logged in" do
+    it "should give back a label and check box" do
+      f = mock()
+      f.expects(:label).returns("one - ")
+      f.expects(:check_box).returns("two")
+      helper.owner_area(f, User.new).should == "one - two"
+    end
+  end
 
+  describe "when a user is not logged in" do
+    it "should give a link to go log in" do
+      helper.owner_area(nil, nil).should == "<a href=\"/users/sign_in\">Sign in to claim ownership</a>"
+    end
+  end
 end
