@@ -21,5 +21,9 @@ describe Restaurant do
     it "should return the desired object" do
       Restaurant.find_by_name("first").should_not be_nil
     end
+
+    it "should return the desired object regardless of case" do
+      Restaurant.find_by_name("FiRsT").should_not be_nil
+    end
   end
 end
