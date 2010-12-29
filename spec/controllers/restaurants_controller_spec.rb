@@ -35,7 +35,7 @@ describe RestaurantsController do
 
     describe "when submitting a new restaurant" do
       before do
-        post 'create', :restaurant => { :name => "A New Restaurant", :owner => @user.id }
+        post 'create', :restaurant => { :name => "A New Restaurant", :owner => @user.id, :address => "555 W Barry" }
       end
 
       after do
@@ -58,7 +58,7 @@ describe RestaurantsController do
 
     describe "when viewing an existing restaurant" do
       before do
-        Restaurant.create(:name => "Akbar", :owner => @user.id)
+        Restaurant.create(:name => "Akbar", :owner => @user.id, :address => "555 W Barry")
       end
 
       after do
@@ -89,11 +89,16 @@ describe RestaurantsController do
         get 'show', :id => "akbar"
         response.should have_selector("h2", :content => "Owner: Bob Saget")
       end
+      
+      it "should have owner on direct page" do
+        get 'show', :id => "akbar"
+        response.should have_selector("h2", :content => "Address: 555 W Barry")
+      end
     end
 
     describe "when modifying an existing restaurant" do
       before do
-        Restaurant.create(:name => "test restaurant")
+        Restaurant.create(:name => "test restaurant", :address => "")
       end
 
       after do
@@ -114,7 +119,7 @@ describe RestaurantsController do
 
     describe "when a restaraunt has no owner defined" do
       before do
-        Restaurant.create(:name => "Panes", :owner => "")
+        Restaurant.create(:name => "Panes", :owner => "", :address => "")
       end
 
       it "should show Not Claimed on the direct page" do
