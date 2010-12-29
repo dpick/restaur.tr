@@ -4,9 +4,27 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    u = Restaurant.create(:name => params[:name])
-    puts u.save
-    puts u
+    res = Restaurant.create(:name => params[:name])
+    res.save
     redirect_to :action => "new"
+  end
+
+  def destroy
+    Restaurant.delete_all(:conditions => {:name => params[:id]})
+    redirect_to restaurants_path
+  end
+
+  def update
+   res = Restaurant.find(:all, :conditions => {:name => params[:id]}).first
+   res.update_attributes(:name => params[:new_name])
+   redirect_to res
+  end
+
+  def show
+    @restaurant = Restaurant.find(:first, :conditions => {:name => params[:name]})
+  end
+
+  def index
+    @restaurants = Restaurant.find(:all)
   end
 end
