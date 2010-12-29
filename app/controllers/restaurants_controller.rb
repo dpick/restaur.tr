@@ -17,7 +17,7 @@ class RestaurantsController < ApplicationController
   def update
    res = Restaurant.find_by_name(params[:id])
    res.update_attributes(:name => params[:new_name])
-   redirect_to res
+   redirect_to restaurant_path(res.name)
   end
 
   def show
