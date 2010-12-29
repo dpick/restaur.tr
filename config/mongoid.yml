@@ -1,25 +1,20 @@
 defaults: &defaults
-  host: localhost
-  # slaves:
-  #   - host: slave1.local
-  #     port: 27018
-  #   - host: slave2.local
-  #     port: 27019
+  host: flame.mongohq.com
+  port: 27060
+  username: derek
+  password: test123
+  database: restaurtr
 
 development:
   <<: *defaults
-  database: rails3_mongoid_devise_development
 
 test:
   <<: *defaults
-  database: rails3_mongoid_devise_test
 
-# set these environment variables on your prod server
 production:
   <<: *defaults
-  host: <%= ENV['MONGO_HOST'] %>
-  port: <%= ENV['MONGO_PORT'] %>
-  username: <%= ENV['MONGO_USER'] %>
-  password: <%= ENV['MONGO_PASSWORD'] %>
-  database: <%= ENV['MONGO_DATABASE'] %>
-
+#  host: <%= ENV['MONGO_HOST'] %>
+#  port: <%= ENV['MONGO_PORT'] %>
+#  username: <%= ENV['MONGO_USER'] %>
+#  password: <%= ENV['MONGO_PASSWORD'] %>
+#  database: <%= ENV['MONGO_DATABASE'] %>
