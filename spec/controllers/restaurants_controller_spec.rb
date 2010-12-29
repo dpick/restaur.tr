@@ -61,13 +61,13 @@ describe RestaurantsController do
 
     it "should delete a restaurant" do
       delete :destroy, :id => "test restaurant"
-      Restaurant.find(:all, :conditions => {:name => "test restaurant"}).empty?.should be_true
+      Restaurant.find_by_name("test restaurant").should be_nil
     end
 
     it "should update a restaurant name" do
       post 'update', :id => "test restaurant", :new_name => "new test"
-      Restaurant.find(:all, :conditions => {:name => "test restaurant"}).empty?.should be_true
-      Restaurant.find(:all, :conditions => {:name => "new test"}).count.should == 1
+      Restaurant.find_by_name("test restaurant").should be_nil
+      Restaurant.find_by_name("new test").should_not be_nil
     end
   end
 end
