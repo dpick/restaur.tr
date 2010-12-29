@@ -1,4 +1,4 @@
-Rails3MongoidDevise::Application.routes.draw do
+RestaurTr::Application.routes.draw do
   resources :restaurants
 
   #get \"users\/show\"
