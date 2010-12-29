@@ -7,30 +7,33 @@ describe RestaurantsController do
     sign_in User.new
   end
 
-  describe "create new restaurant site" do
+  describe "when starting to create a restaurant site" do
     it "should have a name field" do
       get 'new'
       response.should have_selector("label", :content => "Name")
     end
+  end
+
+  describe "when submitting a new restaurant" do
+    before do
+      post 'create', :restaurant => { :name => "A New Restaurant" }
+    end
 
     it "should create a new restaurant when submitted" do 
-      post 'create', :name => "A New Restaurant"
       Restaurant.find(:all).count.should == 1
     end
 
     it "should show the new created restaurant after creation" do
-      post 'create', :name => "A New Restaurant"
       get 'show', :id => "A New Restaurant"
       response.should have_selector("h1", :content => "A New Restaurant")
     end
 
     it "should automatically redirect to the show page after creating a restaurant" do
-      post 'create', :name => "A New Restaurant"
       response.should redirect_to(restaurant_path("A New Restaurant"))
     end
   end
 
-  describe "viewing an existing restaurant" do
+  describe "when viewing an existing restaurant" do
     before do
       Restaurant.create(:name => "Akbar")
     end
@@ -51,17 +54,19 @@ describe RestaurantsController do
     end
   end
 
-  describe "modifying an existing restaurant" do
+  describe "when modifying an existing restaurant" do
+    before do
+      Restaurant.create(:name => "test restaurant")
+    end
+
     it "should delete a restaurant" do
-      post 'create', :name => "test restaurant"
       delete :destroy, :id => "test restaurant"
       Restaurant.find(:all, :conditions => {:name => "test restaurant"}).empty?.should be_true
     end
 
     it "should update a restaurant name" do
-      post 'create', :name => "test"
-      post 'update', :id => "test", :new_name => "new test"
-      Restaurant.find(:all, :conditions => {:name => "test"}).empty?.should be_true
+      post 'update', :id => "test restaurant", :new_name => "new test"
+      Restaurant.find(:all, :conditions => {:name => "test restaurant"}).empty?.should be_true
       Restaurant.find(:all, :conditions => {:name => "new test"}).count.should == 1
     end
   end

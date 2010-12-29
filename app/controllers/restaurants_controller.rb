@@ -4,7 +4,7 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    res = Restaurant.create(:name => params[:name])
+    res = Restaurant.create(params[:restaurant])
     redirect_to restaurant_path(res.name)
   end
 
