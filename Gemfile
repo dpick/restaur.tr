@@ -35,3 +35,6 @@ gem "bson_ext", "1.1.2"
 
 # Bundle gem needed for Devise
 gem "devise", "1.1.3"
+
+gem "haml"
+gem "webrat"

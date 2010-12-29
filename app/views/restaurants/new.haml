@@ -1,0 +1,5 @@
+%h1 Create a new restaurant site
+= form_for @restaurant do |f|
+  = f.label :name, 'Name'
+  = f.text_field :name
+  = f.submit "Create Site"
