@@ -21,7 +21,7 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    @restaurant = Restaurant.find(:first, :conditions => {:name => params[:name]})
+    @restaurant = Restaurant.find(:first, :conditions => {:name => params[:id]})
   end
 
   def index

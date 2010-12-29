@@ -17,6 +17,12 @@ describe RestaurantsController do
       post 'create', :name => "A New Restaurant"
       Restaurant.find(:all).count.should == 1
     end
+
+    it "should show the new created restaurant after creation" do
+      post 'create', :name => "A New Restaurant"
+      get 'show', :id => "A New Restaurant"
+      response.should have_selector("h1", :content => "A New Restaurant")
+    end
   end
 
   describe "modifying an existing restaurant" do

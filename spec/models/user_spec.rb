@@ -1,2 +1,2 @@
-describe "it should pass" do
+describe "UserModel" do
 end
