@@ -1,4 +1,6 @@
 Rails3MongoidDevise::Application.routes.draw do
+  resources :restaurants
+
   #get \"users\/show\"
 
   root :to => "home#index"
