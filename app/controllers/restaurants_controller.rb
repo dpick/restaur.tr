@@ -4,8 +4,8 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    res = Restaurant.create(:name => params[:restaurant][:name], :address => params[:restaurant][:address])
-    res.owner = User.find(params[:restaurant][:owner]) unless params[:restaurant][:owner].empty?
+    params[:restaurant][:owner] = params[:restaurant][:owner].empty? ? nil : User.find(params[:restaurant][:owner])
+    res = Restaurant.create(params[:restaurant])
     redirect_to restaurant_path(res.name)
   end
 

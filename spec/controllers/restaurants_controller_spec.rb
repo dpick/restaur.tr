@@ -46,6 +46,11 @@ describe RestaurantsController do
         Restaurant.find(:all).count.should == 1
       end
 
+      it "should have the owner specified" do
+        puts User.find(@user.id.to_s)
+        Restaurant.find_by_name("A New Restaurant").owner_name.should == "Bob Saget"
+      end
+
       it "should show the new created restaurant after creation" do
         get 'show', :id => "A New Restaurant"
         response.should have_selector("h1", :content => "A New Restaurant")
@@ -89,7 +94,7 @@ describe RestaurantsController do
         get 'show', :id => "akbar"
         response.should have_selector("h2", :content => "Owner: Bob Saget")
       end
-      
+
       it "should have owner on direct page" do
         get 'show', :id => "akbar"
         response.should have_selector("h2", :content => "Address: 555 W Barry")
