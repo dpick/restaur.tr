@@ -116,9 +116,14 @@ describe RestaurantsController do
       end
 
       it "should update a restaurant name" do
-        post 'update', :id => "test restaurant", :new_name => "new test"
-        Restaurant.find_by_name("test restaurant").should be_nil
-        Restaurant.find_by_name("new test").should_not be_nil
+        r = Restaurant.find_by_name("test restaurant")
+        post 'update', :id => r.id, :restaurant => { :name => "new test" }
+        Restaurant.find(r.id).name.should == "new test"
+      end
+
+      it "should show a form to update on the view page" do
+        get 'show', :id => "test restaurant"
+        response.should have_selector("input", :name => "restaurant[name]")
       end
     end
 

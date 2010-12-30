@@ -10,3 +10,11 @@
   %h4= section.name
   - section.menuitems.each do |item|
     %h5= item.name + " " + item.price.to_s
+
+=form_for @restaurant do |f|
+  %fieldset
+    = f.label "Name", :name
+    = f.text_field :name
+    = f.label "Address", :address
+    = f.text_field :address
+    = f.submit "Update"
