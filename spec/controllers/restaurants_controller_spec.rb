@@ -122,7 +122,7 @@ describe RestaurantsController do
         rest = Restaurant.create(:name => "Panes", :owner => "", :address => "")
 
         section = Section.create(:name => "Bread")
-        section.menu_items << MenuItem.create(:name => "Cookie", :price => 1.50)
+        section.menuitems << Menuitem.create(:name => "Cookie", :price => 1.50)
 
         rest.sections << section
       end

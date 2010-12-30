@@ -8,5 +8,5 @@
   = "Menu"
 - @restaurant.sections.each do |section|
   %h4= section.name
-  - section.menu_items.each do |item|
+  - section.menuitems.each do |item|
     %h5= item.name + " " + item.price.to_s
