@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'devise/test_helpers'
-
+require 'pp'
 describe RestaurantsController do
   render_views
   describe "when user is signed in" do
@@ -120,11 +120,8 @@ describe RestaurantsController do
     describe "when a restaraunt has no owner defined" do
       before do
         rest = Restaurant.create(:name => "Panes", :owner => "", :address => "")
-
-        section = Section.create(:name => "Bread")
-        section.menuitems << Menuitem.create(:name => "Cookie", :price => 1.50)
-
-        rest.sections << section
+        section = rest.sections.create(:name => "Bread")
+        section.menuitems.create(:name => "Cookie", :price => 1.50)
       end
 
       it "should show Not Claimed on the direct page" do
@@ -140,6 +137,7 @@ describe RestaurantsController do
 
       it "should show menu items for a restaurant" do
         get 'show', :id => "Panes"
+        pp Restaurant.find_by_name("Panes")
         response.should have_selector("h5", :content => "Cookie")
       end
     end
