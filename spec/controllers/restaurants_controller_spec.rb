@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'devise/test_helpers'
-require 'pp'
+
 describe RestaurantsController do
   render_views
   describe "when user is signed in" do
@@ -137,7 +137,6 @@ describe RestaurantsController do
 
       it "should show menu items for a restaurant" do
         get 'show', :id => "Panes"
-        pp Restaurant.find_by_name("Panes")
         response.should have_selector("h5", :content => "Cookie")
       end
     end
