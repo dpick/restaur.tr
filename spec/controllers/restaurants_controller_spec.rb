@@ -150,7 +150,7 @@ describe RestaurantsController do
   describe "when no user is logged in" do
     describe "when starting to create a restaurant site" do
       it "should put no user as owner" do
-        post 'create', :restaurant => { :name => "A New Restaurant 2", :owner => "" }
+        post 'create', :restaurant => { :name => "A New Restaurant 2", :owner => nil }
         Restaurant.find_by_name("A New Restaurant 2").owner.should be_nil
       end
     end

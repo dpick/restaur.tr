@@ -4,9 +4,14 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    params[:restaurant][:owner] = params[:restaurant][:owner].empty? ? nil : User.find(params[:restaurant][:owner])
+    params[:restaurant][:owner] = owner_from_id(params[:restaurant][:owner])
     res = Restaurant.create(params[:restaurant])
     redirect_to restaurant_path(res.name)
+  end
+
+  def owner_from_id id
+    return nil if id == nil or id.empty?
+    User.find(params[:restaurant][:owner])
   end
 
   def destroy
@@ -15,9 +20,9 @@ class RestaurantsController < ApplicationController
   end
 
   def update
-   res = Restaurant.find_by_name(params[:id])
-   res.update_attributes(:name => params[:new_name])
-   redirect_to restaurant_path(res.name)
+    res = Restaurant.find_by_name(params[:id])
+    res.update_attributes(:name => params[:new_name])
+    redirect_to restaurant_path(res.name)
   end
 
   def show
