@@ -4,6 +4,7 @@ class User
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  referenced_in :restaurant
 
   field :name
   validates_presence_of :name

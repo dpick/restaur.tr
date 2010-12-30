@@ -10,7 +10,7 @@ describe Restaurant do
   describe "for a single restaurant" do
     before do
       u = User.create(:name => "Bill Clinton", :email => "test@test.com", :password => "pword1234")
-      Restaurant.create(:name => "single", :owner => u.id)
+      Restaurant.create(:name => "single", :owner => u)
     end
 
     after do

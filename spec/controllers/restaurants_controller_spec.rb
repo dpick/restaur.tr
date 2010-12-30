@@ -35,7 +35,7 @@ describe RestaurantsController do
 
     describe "when submitting a new restaurant" do
       before do
-        post 'create', :restaurant => { :name => "A New Restaurant", :owner => @user.id, :address => "555 W Barry" }
+        post 'create', :restaurant => { :name => "A New Restaurant", :owner => @user.id.to_s, :address => "555 W Barry" }
       end
 
       after do
@@ -58,7 +58,7 @@ describe RestaurantsController do
 
     describe "when viewing an existing restaurant" do
       before do
-        Restaurant.create(:name => "Akbar", :owner => @user.id, :address => "555 W Barry")
+        Restaurant.create(:name => "Akbar", :owner => @user, :address => "555 W Barry")
       end
 
       after do
@@ -119,7 +119,7 @@ describe RestaurantsController do
 
     describe "when a restaraunt has no owner defined" do
       before do
-        rest = Restaurant.create(:name => "Panes", :owner => "", :address => "")
+        rest = Restaurant.create(:name => "Panes", :address => "")
         section = rest.sections.create(:name => "Bread")
         section.menuitems.create(:name => "Cookie", :price => 1.50)
       end
@@ -145,7 +145,7 @@ describe RestaurantsController do
   describe "when no user is logged in" do
     describe "when starting to create a restaurant site" do
       it "should put no user as owner" do
-        post 'create', :restaurant => { :name => "A New Restaurant 2" }
+        post 'create', :restaurant => { :name => "A New Restaurant 2", :owner => "" }
         Restaurant.find_by_name("A New Restaurant 2").owner.should be_nil
       end
     end
