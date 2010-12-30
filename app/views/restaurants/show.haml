@@ -4,3 +4,9 @@
   = "Owner: " + owner_name(@restaurant)
 %h2
   = "Address: " + @restaurant.address
+%h3
+  = "Menu"
+- @restaurant.sections.each do |section|
+  %h4= section.name
+  - section.menu_items.each do |item|
+    %h5= item.name + " " + item.price.to_s

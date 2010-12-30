@@ -119,12 +119,28 @@ describe RestaurantsController do
 
     describe "when a restaraunt has no owner defined" do
       before do
-        Restaurant.create(:name => "Panes", :owner => "", :address => "")
+        rest = Restaurant.create(:name => "Panes", :owner => "", :address => "")
+
+        section = Section.create(:name => "Bread")
+        section.menu_items << MenuItem.create(:name => "Cookie", :price => 1.50)
+
+        rest.sections << section
       end
 
       it "should show Not Claimed on the direct page" do
         get 'show', :id => "Panes"
         response.should have_selector("h2", :content => "Not Claimed")
+      end
+
+      it "should show all sections for a restaurant" do
+        get 'show', :id => "Panes"
+        response.should have_selector("h3", :content => "Menu")
+        response.should have_selector("h4", :content => "Bread")
+      end
+
+      it "should show menu items for a restaurant" do
+        get 'show', :id => "Panes"
+        response.should have_selector("h5", :content => "Cookie")
       end
     end
   end
