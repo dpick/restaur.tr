@@ -26,6 +26,8 @@
     = f.text_field :address
     = f.label "Phone Number", :phone_number
     = f.text_field :phone_number
+    = f.label "About", :about
+    = f.text_area :about
     %br
     %h3= "Sections: "
     = f.fields_for :sections do |s|

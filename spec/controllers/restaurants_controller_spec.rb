@@ -108,7 +108,7 @@ describe RestaurantsController do
       end
     end
 
-    describe "when view a list of restaurants" do
+    describe "when viewing a list of restaurants" do
       before do
         Restaurant.create(:name => "Akbar", :owner => @user, :address => "555 W Barry", :phone_number => "555-555-5555")
       end
@@ -139,9 +139,20 @@ describe RestaurantsController do
         Restaurant.find(r.id).name.should == "new test"
       end
 
+      it "should update a restaurant about" do
+        r = Restaurant.find_by_name("test restaurant")
+        post 'update', :id => r.id, :restaurant => { :about => "new about" }
+        Restaurant.find(r.id).about.should == "new about"
+      end
+
       it "should show a form to update on the view page" do
         get 'show', :id => "test restaurant"
         response.should have_selector("input", :name => "restaurant[name]")
+      end
+
+      it "should show a form to update the about" do
+        get 'show', :id => "test restaurant"
+        response.should have_selector("textarea", :name => "restaurant[about]")
       end
     end
 
