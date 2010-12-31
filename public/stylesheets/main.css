@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Vollkorn|Tangerine);
+
 .content {
   width: 900px;
   margin: 30px auto;
@@ -12,7 +14,7 @@ html {
 }
 
 body {
-  background-color: #fafafa;
+  background-color: #eee;
   font-family: 'Helvetica', 'Arial', sans;
   margin: 0px 0px 0px 0px;
 }
@@ -32,17 +34,58 @@ a {
 
 .landing h1 {
   width: 100%;
-  font-size: 80px;
+  font-size: 140px;
   font-weight: bold;
   text-shadow: gray 2px 2px 1px;
   text-align: center;
+  font-family: 'Tangerine';
+  margin-bottom: 0px;
+  margin-top: -20px;
 }
 
-.landing_button {
-  font-size: 50px;
-  color: white;
-  background-color: green;
-  -webkit-border-radius: 25px;
+button.landing_button {
+  background: #41a862;
+  border: 1px solid #193f25;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: inset 0 1px 10px 1px #5cee8b, 0px 1px 0 #1d4d2c, 0 6px 0px #1f5330, 0 8px 4px 1px #111;
+  -webkit-box-shadow: inset 0 1px 10px 1px #5cee8b, 0px 1px 0 #1d4d2c, 0 6px 0px #1f5330, 0 8px 4px 1px #111;
+  box-shadow: inset 0 1px 10px 1px #5c8bee, 0px 1px 0 #1d4d2c, 0 6px 0px #1f5330, 0 8px 4px 1px #111;
+  color: #fff;
+  font-family: "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 1;
+  margin-bottom: 10px;
+  padding: 20px 0 22px 0;
   text-align: center;
+  text-shadow: 0px -1px 1px rgba(0, 0, 0, .8);
+  width: 100%;
+}
+
+button.landing_button:hover {
+  -moz-box-shadow: inset 0 0px 20px 1px #87ffad, 0px 1px 0 #1d4d2c, 0 6px 0px #1f5330, 0 8px 4px 1px #111;
+  -webkit-box-shadow: inset 0 0px 20px 1px #87ffad, 0px 1px 0 #1d4d2c, 0 6px 0px #1f5330, 0 8px 4px 1px #111;
+  box-shadow: inset 0 0px 20px 1px #87ffad, 0px 1px 0 #1d4d2c, 0 6px 0px #1f5330, 0 8px 4px 1px #111;
+  cursor: pointer;
+}
+
+button.landing_button:active {
+  background: #399155;
+  -moz-box-shadow: inset 0 1px 10px 1px #5cee8b, 0 1px 0 #1d4d2c, 0 2px 0 #1f5330, 0 4px 3px 0 #111;
+  -webkit-box-shadow: inset 0 1px 10px 1px #5cee8b, 0 1px 0 #1d4d2c, 0 2px 0 #1f5330, 0 4px 3px 0 #111;
+  box-shadow: inset 0 1px 10px 1px #5cee8b, 0 1px 0 #1d4d2c, 0 2px 0 #1f5330, 0 4px 3px 0 #111;
+}
+
+.landing p {
+  margin-top: 20px;
+  font-family: 'Vollkorn';
+  background-color: #5bf;
+  margin-left: -20px;
+  margin-right: -20px;
   padding: 20px;
+  border-top: #333 solid 1px;
+  border-bottom: #333 solid 1px;
+  text-align: center;
 }
