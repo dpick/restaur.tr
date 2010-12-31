@@ -47,7 +47,7 @@ describe RestaurantsController do
       end
 
       it "should have the owner specified" do
-        puts User.find(@user.id.to_s)
+        #puts User.find(@user.id.to_s)
         Restaurant.find_by_name("A New Restaurant").owner_name.should == "Bob Saget"
       end
 
@@ -154,7 +154,8 @@ describe RestaurantsController do
   describe "when no user is logged in" do
     describe "when starting to create a restaurant site" do
       it "should put no user as owner" do
-        post 'create', :restaurant => { :name => "A New Restaurant 2", :owner => nil }
+        post 'create', :restaurant => { :name => "A New Restaurant 2", :owner => nil, :address => "555 W Barry", :sections => {:name => 'bread', :menuitems => { :name => 'cookie', :description => 'desc', :price => 1.50}}}
+
         Restaurant.find_by_name("A New Restaurant 2").owner.should be_nil
       end
     end

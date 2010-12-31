@@ -8,15 +8,15 @@ class RestaurantsController < ApplicationController
   def create
     params[:restaurant][:owner] = owner_from_id(params[:restaurant][:owner])
 
-    res = Restaurant.create(:name => params[:restaurant][:name], :address => params[:restaurant][:address])
+    res = Restaurant.create(:name => params[:restaurant][:name], :address => params[:restaurant][:address], :owner => params[:restaurant][:owner])
     section = res.sections.create(:name => params[:restaurant][:sections][:name])
     section.menuitems.create(params[:restaurant][:sections][:menuitems])
 
     redirect_to restaurant_path(res.name)
   end
 
-  def owner_from_id id
-    return nil if id == nil or id.empty?
+  def owner_from_id(id)
+    return nil if id.nil? or id.empty?
     User.find(params[:restaurant][:owner])
   end
 

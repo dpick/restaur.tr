@@ -7,6 +7,9 @@
     = f.label :address, 'Address'
     = f.text_field :address
     %br
+    %br
+    = owner_area(f, current_user)
+    %br
     %h3= "Sections: "
     = f.fields_for :sections do |s|
       = s.label :name, 'Name'
@@ -20,7 +23,5 @@
         = m.text_field :description
         = m.label :price, 'Price'
         = m.text_field :price
-    %br
-    = owner_area(f, current_user)
-    %br
-    = f.submit "Create Site"
+        %br
+        = f.submit "Create Site"
