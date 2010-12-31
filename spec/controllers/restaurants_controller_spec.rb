@@ -35,7 +35,7 @@ describe RestaurantsController do
 
     describe "when submitting a new restaurant" do
       before do
-        post 'create', :restaurant => { :name => "A New Restaurant", :owner => @user.id.to_s, :address => "555 W Barry" }
+        post 'create', :restaurant => { :name => "A New Restaurant", :owner => @user.id.to_s, :address => "555 W Barry", :sections => {:name => 'bread', :menuitems => { :name => 'cookie', :description => 'desc', :price => 1.50}}}
       end
 
       after do
@@ -141,8 +141,7 @@ describe RestaurantsController do
 
       it "should show all sections for a restaurant" do
         get 'show', :id => "Panes"
-        response.should have_selector("h3", :content => "Menu")
-        response.should have_selector("h4", :content => "Bread")
+        response.should have_selector("h3", :content => "Bread")
       end
 
       it "should show menu items for a restaurant" do
