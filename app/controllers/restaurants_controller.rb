@@ -1,3 +1,5 @@
+require 'pp'
+
 class RestaurantsController < ApplicationController
   def new
     @restaurant = Restaurant.new
@@ -5,7 +7,11 @@ class RestaurantsController < ApplicationController
 
   def create
     params[:restaurant][:owner] = owner_from_id(params[:restaurant][:owner])
-    res = Restaurant.create(params[:restaurant])
+
+    res = Restaurant.create(:name => params[:restaurant][:name], :address => params[:restaurant][:address])
+    section = res.sections.create(:name => params[:restaurant][:sections][:name])
+    section.menuitems.create(params[:restaurant][:sections][:menuitems])
+
     redirect_to restaurant_path(res.name)
   end
 

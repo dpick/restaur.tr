@@ -7,9 +7,12 @@
 %h3
   = "Menu"
 - @restaurant.sections.each do |section|
-  %h4= section.name
+  %h3= section.name
   - section.menuitems.each do |item|
     %h5= item.name + " " + item.price.to_s
+
+%br
+%br
 
 =form_for @restaurant do |f|
   %fieldset
@@ -17,4 +20,18 @@
     = f.text_field :name
     = f.label "Address", :address
     = f.text_field :address
-    = f.submit "Update"
+    %br
+    %h3= "Sections: "
+    = f.fields_for :sections do |s|
+      = s.label :name, 'Name'
+      = s.text_field :name
+      %br
+      %h3= "Items: "
+      = s.fields_for :menuitems do |i|
+        = i.label :name, 'Name'
+        = i.text_field :name
+        = i.label :description, 'Description'
+        = i.text_field :description
+        = i.label :price, 'Price'
+        = i.text_field :price
+        = f.submit "Update"
