@@ -42,7 +42,6 @@ describe RestaurantsController do
       before do
         post 'create', :restaurant => { 
           :name => "A New Restaurant", :owner => @user.id.to_s, :address => "555 W Barry", 
-          :sections => { :name => 'bread', :menuitems => { :name => 'cookie', :description => 'desc', :price => 1.50}},
           :phone_number => "555-555-5555"
         }
       end
@@ -190,7 +189,6 @@ describe RestaurantsController do
       it "should put no user as owner" do
         post 'create', :restaurant => { 
           :name => "A New Restaurant 2", :owner => nil, :address => "555 W Barry", 
-          :sections => {:name => 'bread', :menuitems => { :name => 'cookie', :description => 'desc', :price => 1.50}},
           :phone_number => "555-555-5555"
         }
 
