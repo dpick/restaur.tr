@@ -8,7 +8,7 @@ class RestaurantsController < ApplicationController
   def create
     params[:restaurant][:owner] = owner_from_id(params[:restaurant][:owner])
 
-    res = Restaurant.create(:name => params[:restaurant][:name], :address => params[:restaurant][:address], :owner => params[:restaurant][:owner])
+    res = Restaurant.create(:name => params[:restaurant][:name], :address => params[:restaurant][:address], :owner => params[:restaurant][:owner], :phone_number => params[:restaurant][:phone_number])
     section = res.sections.create(:name => params[:restaurant][:sections][:name])
     section.menuitems.create(params[:restaurant][:sections][:menuitems])
 

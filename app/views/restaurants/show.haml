@@ -5,6 +5,8 @@
 %h2
   = "Address: " + @restaurant.address
 %h2
+  = "Phone Number: " + @restaurant.phone_number
+%h2
   = "Menu"
 - @restaurant.sections.each do |section|
   %h3= section.name
@@ -20,6 +22,8 @@
     = f.text_field :name
     = f.label "Address", :address
     = f.text_field :address
+    = f.label "Phone Number", :phone_number
+    = f.text_field :phone_number
     %br
     %h3= "Sections: "
     = f.fields_for :sections do |s|

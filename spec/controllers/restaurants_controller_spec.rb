@@ -31,11 +31,20 @@ describe RestaurantsController do
         response.should have_selector("label", :content => "Address")
         response.should have_selector("input", :name => "restaurant[address]")
       end
+
+      it "should have a phone number field" do
+        response.should have_selector("label", :content => "Phone Number")
+        response.should have_selector("input", :name => "restaurant[phone_number]")
+      end
     end
 
     describe "when submitting a new restaurant" do
       before do
-        post 'create', :restaurant => { :name => "A New Restaurant", :owner => @user.id.to_s, :address => "555 W Barry", :sections => {:name => 'bread', :menuitems => { :name => 'cookie', :description => 'desc', :price => 1.50}}}
+        post 'create', :restaurant => { 
+          :name => "A New Restaurant", :owner => @user.id.to_s, :address => "555 W Barry", 
+          :sections => { :name => 'bread', :menuitems => { :name => 'cookie', :description => 'desc', :price => 1.50}},
+          :phone_number => "555-555-5555"
+        }
       end
 
       after do
@@ -63,7 +72,7 @@ describe RestaurantsController do
 
     describe "when viewing an existing restaurant" do
       before do
-        Restaurant.create(:name => "Akbar", :owner => @user, :address => "555 W Barry")
+        Restaurant.create(:name => "Akbar", :owner => @user, :address => "555 W Barry", :phone_number => "555-555-5555")
       end
 
       after do
@@ -103,7 +112,7 @@ describe RestaurantsController do
 
     describe "when modifying an existing restaurant" do
       before do
-        Restaurant.create(:name => "test restaurant", :address => "")
+        Restaurant.create(:name => "test restaurant", :address => "", :phone_number => "555-555-5555")
       end
 
       after do
@@ -129,7 +138,7 @@ describe RestaurantsController do
 
     describe "when a restaraunt has no owner defined" do
       before do
-        rest = Restaurant.create(:name => "Panes", :address => "")
+        rest = Restaurant.create(:name => "Panes", :address => "", :phone_number => "555-555-5555")
         section = rest.sections.create(:name => "Bread")
         section.menuitems.create(:name => "Cookie", :price => 1.50)
       end
@@ -148,13 +157,22 @@ describe RestaurantsController do
         get 'show', :id => "Panes"
         response.should have_selector("h5", :content => "Cookie")
       end
+
+      it "should show phone numbers for a restaurant" do
+        get 'show', :id => "Panes"
+        response.should have_selector("h2", :content => "555-555-5555")
+      end
     end
   end
 
   describe "when no user is logged in" do
     describe "when starting to create a restaurant site" do
       it "should put no user as owner" do
-        post 'create', :restaurant => { :name => "A New Restaurant 2", :owner => nil, :address => "555 W Barry", :sections => {:name => 'bread', :menuitems => { :name => 'cookie', :description => 'desc', :price => 1.50}}}
+        post 'create', :restaurant => { 
+          :name => "A New Restaurant 2", :owner => nil, :address => "555 W Barry", 
+          :sections => {:name => 'bread', :menuitems => { :name => 'cookie', :description => 'desc', :price => 1.50}},
+          :phone_number => "555-555-5555"
+        }
 
         Restaurant.find_by_name("A New Restaurant 2").owner.should be_nil
       end

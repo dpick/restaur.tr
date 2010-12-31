@@ -3,7 +3,7 @@ class Restaurant
 
   field :name, :type => String
   field :address, :type => String
-  field :phone_num, :type => String
+  field :phone_number, :type => String
   field :about, :type => String
 
   embeds_many :sections
