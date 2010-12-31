@@ -72,41 +72,50 @@ describe RestaurantsController do
 
     describe "when viewing an existing restaurant" do
       before do
-        Restaurant.create(:name => "Akbar", :owner => @user, :address => "555 W Barry", :phone_number => "555-555-5555")
+        r = Restaurant.create(:name => "Akbar", :owner => @user, :address => "555 W Barry", :phone_number => "555-555-5555")
+        r.about = "Akbar is awesome!"
+        r.save
+        get 'show', :id => "Akbar"
       end
 
       after do
         Restaurant.delete_all
       end
 
-      it "should be listed in the list of all restaurants" do
-        get 'index'
-        response.should have_selector("li", :content => "Akbar")
-      end
-
       it "should be accessible through a direct name link" do
-        get 'show', :id => "Akbar"
         response.should_not be_nil
       end
 
       it "should be accessible through a case insensitive name link" do
-        get 'show', :id => "akbar"
         response.should_not be_nil
       end
 
       it "should have name on direct page" do
-        get 'show', :id => "akbar"
         response.should have_selector("h1", :content => "Akbar")
       end
 
       it "should have owner on direct page" do
-        get 'show', :id => "akbar"
         response.should have_selector("h2", :content => "Owner: Bob Saget")
       end
 
-      it "should have owner on direct page" do
-        get 'show', :id => "akbar"
+      it "should have address on direct page" do
         response.should have_selector("h2", :content => "Address: 555 W Barry")
+      end
+
+      it "should have about on direct page" do
+        response.should have_selector("h2", :content => "About")
+        response.should have_selector("p", :content => "Akbar is awesome!")
+      end
+    end
+
+    describe "when view a list of restaurants" do
+      before do
+        Restaurant.create(:name => "Akbar", :owner => @user, :address => "555 W Barry", :phone_number => "555-555-5555")
+      end
+
+      it "should be listed in the list of all restaurants" do
+        get 'index'
+        response.should have_selector("li", :content => "Akbar")
       end
     end
 

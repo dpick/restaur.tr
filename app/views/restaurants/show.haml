@@ -6,6 +6,8 @@
   = "Address: " + @restaurant.address
 %h2
   = "Phone Number: " + @restaurant.phone_number
+%h2 About
+%p= @restaurant.about.nil? ? "" : @restaurant.about
 %h2
   = "Menu"
 - @restaurant.sections.each do |section|
