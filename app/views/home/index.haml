@@ -1,6 +1,17 @@
+= javascript_include_tag "landing.js"
 .landing
   %h1 Restaur.tr
   %a{"href" => new_restaurant_path}
     %button{"class" => "landing_button"}
       Create a Restaurant Webpage
-  %p Create a professional and socially connected website for your restaurant in seconds! Restaurtr has helped businesses all over the world create modern websites that keep them connected with loyal customers. Allow us to take care of the website while you focus on what you do best -- the restaurant.
+  %p{"class" => "callout"} Create a professional and socially connected website for your restaurant in seconds! Restaurtr has helped businesses all over the world create modern websites that keep them connected with loyal customers. Allow us to take care of the website while you focus on what you do best -- the restaurant.
+  %ul{"class" => "list", "id" => "landing_list"}
+    - @restaurants.each do |r|
+      %li{"class" => "item"}
+        %p{"class" => "name"}
+          = link_to r.name, restaurant_path(r.name)
+        %p{"class" => "address"}= r.address
+  .list_description
+    %p
+      = "Here is just a sample of some of our restaurants that are using Restaurtr. " 
+      = link_to("View all restaurants..", restaurants_path)

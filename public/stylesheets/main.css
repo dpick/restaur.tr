@@ -79,8 +79,12 @@ button.landing_button:active {
 }
 
 .landing p {
-  margin-top: 20px;
   font-family: 'Vollkorn';
+  font-size: 20px;
+}
+
+.landing p.callout {
+  margin-top: 20px;
   background-color: #5bf;
   margin-left: -20px;
   margin-right: -20px;
@@ -88,4 +92,55 @@ button.landing_button:active {
   border-top: #333 solid 1px;
   border-bottom: #333 solid 1px;
   text-align: center;
+  margin-bottom: 0px;
+}
+
+.landing .jcarousel-container {
+  width: 45%;
+  float: right;
+  margin-right: 94px;
+  background-color: black;
+  color: white;
+  height: 340px;
+}
+
+.landing .jcarousel-clip-vertical {
+  width: 100%;
+  height: 340px;
+}
+
+.landing .jcarousel-item {
+  width: 100%;
+  height: 70px;
+}
+
+.landing .list_description {
+  width: 30%;
+  border-left: #333 solid 1px;
+  border-right: #333 solid 1px;
+  padding: 20px;
+  margin-left: 10%;
+  height: 300px;
+}
+
+.landing .list .item {
+  padding: 20px;
+  width: 100%;
+  vertical-align: center;
+  text-align: center;
+  background-image: -moz-linear-gradient(90deg, black, #733, black);
+  background-image: -webkit-gradient(linear, center bottom, center top, from(black), color-stop(20%,#335), color-stop(50%, #448), color-stop(80%, #335), to(black));
+}
+
+.landing .list .item p {
+  margin-left: -30px;
+}
+
+.landing .list a {
+  color: white
+}
+
+.landing .list .item .address {
+  margin-top: -30px;
+  color: #777;
 }

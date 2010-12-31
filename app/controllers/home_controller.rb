@@ -1,7 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @users = User.all
-
+    @restaurants = Restaurant.limit(10)
   end
-
 end
