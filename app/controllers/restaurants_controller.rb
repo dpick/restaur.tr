@@ -7,15 +7,8 @@ class RestaurantsController < ApplicationController
 
   def create
     params[:restaurant][:owner] = owner_from_id(params[:restaurant][:owner])
-
     res = Restaurant.create(params[:restaurant])
-
     redirect_to restaurant_path(res.name)
-  end
-
-  def owner_from_id(id)
-    return nil if id.nil? or id.empty?
-    User.find(params[:restaurant][:owner])
   end
 
   def destroy
@@ -36,4 +29,10 @@ class RestaurantsController < ApplicationController
   def index
     @restaurants = Restaurant.find(:all)
   end
+
+  def owner_from_id(id)
+    return nil if id.nil? or id.empty?
+    User.find(params[:restaurant][:owner])
+  end
+
 end

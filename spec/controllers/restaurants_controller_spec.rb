@@ -55,7 +55,6 @@ describe RestaurantsController do
       end
 
       it "should have the owner specified" do
-        #puts User.find(@user.id.to_s)
         Restaurant.find_by_name("A New Restaurant").owner_name.should == "Bob Saget"
       end
 
