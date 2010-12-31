@@ -3,6 +3,9 @@ class Restaurant
 
   field :name, :type => String
   field :address, :type => String
+  field :phone_num, :type => String
+  field :about, :type => String
+
   embeds_many :sections
   references_one :owner, :class_name => "User"
 
