@@ -1,1 +1,7 @@
-%h1 Test
+%h1 Menu
+
+= @restaurant.sections.each do |section|
+  %h2= section.name
+  %ul
+    = section.menuitems.each do |menuitem|
+      %li= menuitem.name + " .... " + menuitem.price.to_s

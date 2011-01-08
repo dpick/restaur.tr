@@ -109,11 +109,21 @@ describe RestaurantsController do
     describe "when viewing a restaurant menu" do
       before do
         r = Restaurant.create(:name => "Akbar", :owner => @user, :address => "555 W Barry", :phone_number => "555-555-5555")
+        r.sections.create(:name => "Appetizers")
+        r.sections[0].menuitems.create(:name => "Chips and Salsa", :price => 2.00)
         get 'menu', :id => "Akbar"
       end
 
       it "should respond" do
         response.should_not be_nil
+      end
+
+      it "should have Appetizers as a section title" do
+        response.should have_selector("h2", :content => "Appetizers")
+      end
+
+      it "should have Chips and Salsa as a menu item" do
+        response.should have_selector("li", :content => "Chips and Salsa")
       end
     end
 
