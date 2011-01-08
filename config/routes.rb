@@ -1,5 +1,10 @@
 RestaurTr::Application.routes.draw do
-  resources :restaurants
+  resources :restaurants do
+    member do
+      get 'menu'
+    end
+  end
+
 
   #get \"users\/show\"
 

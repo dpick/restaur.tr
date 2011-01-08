@@ -106,6 +106,17 @@ describe RestaurantsController do
       end
     end
 
+    describe "when viewing a restaurant menu" do
+      before do
+        r = Restaurant.create(:name => "Akbar", :owner => @user, :address => "555 W Barry", :phone_number => "555-555-5555")
+        get 'menu', :id => "Akbar"
+      end
+
+      it "should respond" do
+        response.should_not be_nil
+      end
+    end
+
     describe "when viewing a list of restaurants" do
       before do
         Restaurant.create(:name => "Akbar", :owner => @user, :address => "555 W Barry", :phone_number => "555-555-5555")

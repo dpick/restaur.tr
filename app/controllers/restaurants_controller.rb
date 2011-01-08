@@ -35,4 +35,7 @@ class RestaurantsController < ApplicationController
     User.find(params[:restaurant][:owner])
   end
 
+  def menu
+    @restaurant = Restaurant.find_by_name(params[:id])
+  end
 end
